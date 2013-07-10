@@ -1,0 +1,47 @@
+#!/bin/bash
+
+add() {
+  URL=$1
+  NAME=$2
+
+  if [[ $URL == "" || $NAME == "" ]]
+  then
+    echo "Usage: buildpacks add {url} {name}"
+    exit 1
+  fi
+
+  git clone $URL /build/buildpacks/$NAME
+  cd /build/buildpacks/$NAME
+}
+
+list() {
+  ls /build/buildpacks | parallel 'cd {} && echo -n \"{} \" && git ls-remote --get-url origin'
+}
+
+remove() {
+  NAME=$1
+
+  if [[ $NAME == "" ]]
+  then
+    echo "Usage: buildpacks remove {name}"
+    exit 1
+  fi
+
+  rm -rf /build/buildpacks/$NAME
+}
+
+case "$1" in
+  add)
+    add $2 $3
+    ;;
+  list)
+    list
+    ;;
+  remove)
+    remove $2
+    ;;
+  *)
+    echo "Usage: buildpacks {add|list|remove}"
+    exit 1
+  ;;
+esac
