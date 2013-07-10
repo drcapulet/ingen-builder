@@ -14,7 +14,7 @@ add() {
 }
 
 list() {
-  ls /build/buildpacks | parallel 'cd /build/buildpacks/{} && echo -n \"{} \" && git ls-remote --get-url origin'
+  ls /build/buildpacks | parallel 'cd /build/buildpacks/{} && echo -n "{} " && git ls-remote --get-url origin'
 }
 
 remove() {
