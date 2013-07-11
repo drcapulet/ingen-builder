@@ -1,6 +1,16 @@
 #!/bin/bash
 set -e
 
+# arguments
+git_url=$1
+branch=$2
+revision=$3
+
+if [[ $git_url == "" || $branch == "" || $revision == "" ]]; then
+  echo "Usage build {git url} {branch} {revision}"
+  exit 1
+fi
+
 app_root=/app
 build_root=/build/app
 cache_root=/cache
@@ -11,6 +21,11 @@ selected_buildpack=
 
 mkdir -p $cache_root
 mkdir -p $build_root
+
+# clone down the repo
+git clone -b ${branch} --single-branch ${git_url} ${build_root}
+cd ${build_root}
+git checkout ${revision}
 
 # Try and detect the buildpack
 for buildpack in "${buildpacks[@]}"; do
