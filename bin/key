@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -f "/.ssh/id_git.pub" ]; then
+if [ ! -f "/.ssh/id_git.pub" ]; then
   mkdir /.ssh
   chmod 700 /.ssh
   ssh-keygen -N '' -f /.ssh/id_git
