@@ -6,4 +6,4 @@ if [ -f "/.ssh/id_git.pub" ]; then
   ssh-keygen -N '' -f /.ssh/id_git
 fi
 
-cat ~/.ssh/id_git.pub
+cat /.ssh/id_git.pub
