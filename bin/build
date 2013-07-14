@@ -23,9 +23,10 @@ mkdir -p $cache_root
 mkdir -p $build_root
 
 # clone down the repo
-git clone -b ${branch} --single-branch ${git_url} ${build_root}
-cd ${build_root}
+git clone -b ${branch} --single-branch ${git_url} ${app_root}
+cd ${app_root}
 git checkout ${revision}
+cp -r /app /build
 
 # Try and detect the buildpack
 for buildpack in "${buildpacks[@]}"; do
