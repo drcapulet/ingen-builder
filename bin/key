@@ -14,7 +14,7 @@ add() {
   if [ -z "$out" ]; then
     ip=$(dig +short $host)
     if [ -z "$ip" ]; then
-      echo "Unable to resolve $ip"
+      echo "Unable to resolve $host"
       exit 2
     fi
     ssh-keyscan -H $host >> /root/.ssh/known_hosts
