@@ -39,7 +39,7 @@ gen_ssh_files() {
 
 case "$1" in
   add)
-    add $1
+    add $2
     ;;
   gen)
     gen
