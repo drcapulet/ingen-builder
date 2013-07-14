@@ -23,12 +23,15 @@ mkdir -p $cache_root
 mkdir -p $build_root
 
 # clone down the repo
-git clone -b ${branch} --single-branch ${git_url} ${app_root}
+echo -n "-----> Cloning repository... "
+git clone -b ${branch} --single-branch ${git_url} ${app_root} &> /dev/null
 cd ${app_root}
-git checkout ${revision}
+git checkout ${revision} &> /dev/null
 cp -r /app /build
+echo "done"
 
 # Try and detect the buildpack
+echo "-----> Detecting buildpack..."
 for buildpack in "${buildpacks[@]}"; do
   buildpack_name=$($buildpack/bin/detect "$build_root") && selected_buildpack=$buildpack && break
 done
