@@ -24,11 +24,11 @@ add() {
 
 gen() {
   gen_ssh_files
-  if [ ! -f "/root/.ssh/id_git.pub" ]; then
-    ssh-keygen -N '' -f /root/.ssh/id_git
+  if [ ! -f "/root/.ssh/id_rsa.pub" ]; then
+    ssh-keygen -t rsa -N '' -f /root/.ssh/id_rsa.pub
   fi
 
-  cat /root/.ssh/id_git.pub
+  cat /root/.ssh/id_rsa.pub
 }
 
 gen_ssh_files() {
